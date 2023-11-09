@@ -101,7 +101,6 @@ namespace Sinsoft.Alejo
             FriendlyName = friendlyName;
             Subject = subject;
             Object = @object;
-            Singular = singular;
             PossessiveAdjective = possessiveAdjective;
             PossessivePronoun = possessivePronoun;
             Reflexive = reflexive;
