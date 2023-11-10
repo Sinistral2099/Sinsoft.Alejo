@@ -1,9 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sinsoft.Alejo
 {
@@ -30,17 +27,20 @@ namespace Sinsoft.Alejo
         public string CurrentTense { get; set; }
 
         public static PronounEx AeAer { get { return new PronounEx("aeaer", "Ae/Aer", "Ae", "Aer", "Aers", "Aers", "Aerself", "Was", "Is", false); } }
-        public static PronounEx Any { get { return TheyThem; } }
+        public static PronounEx Any { get { return new PronounEx("any", "Any", "They", "Them", "Their", "Theirs", "Themself", "Was", "Is", false); } }
         public static PronounEx EEm { get { return new PronounEx("eem", "E/Em", "E", "Em", "Eir", "Eirs", "Eirself", "Was", "Is", false); } }
         public static PronounEx FaeFaer { get { return new PronounEx("faefaer", "Fae/Faer", "Fae", "Faer", "Faer", "Faers", "Faerself", "Were", "Are", false); } }
         public static PronounEx HeHim { get { return new PronounEx("hehim", "He/Him", "He", "Him", "His", "His", "Himself", "Was", "Is", false); } }
-        public static PronounEx HeShe { get { return TheyThem; } }
-        public static PronounEx HeThey { get { return HeHim; } } //Only for legacy support and ease of use interaction. Not in the new API.
+        //Only for legacy support and ease of use interaction. Not in the new API.
+        public static PronounEx HeShe { get { return new PronounEx("heshe", "He/She", "They", "Them", "Their", "Theirs", "Themself", "Was", "Is", false); } }
+        //Only for legacy support and ease of use interaction. Not in the new API.
+        public static PronounEx HeThey { get { return new PronounEx("hethem", "He/They", "He", "Him", "His", "His", "Himself", "Was", "Is", false); } } 
         public static PronounEx ItIts { get { return new PronounEx("itits", "It/Its", "It", "It", "Its", "Its", "Itself", "Was", "Is", false); } }
-        public static PronounEx Other { get { return TheyThem; } }
+        public static PronounEx Other { get { return new PronounEx("other", "Other", "They", "Them", "Their", "Theirs", "Themself", "Was", "Is", false); } }
         public static PronounEx PerPer { get { return new PronounEx("perper", "Per/Per", "Per", "Per", "Pers", "Pers", "Perself", "Was", "Is", false); } }
         public static PronounEx SheHer { get { return new PronounEx("sheher", "She/Her", "She", "Her", "Hers", "Hers", "Herself", "Was", "Is", false); } }
-        public static PronounEx SheThey { get { return SheHer; } } //Only for legacy support and ease of use interaction. Not in the new API.
+        //Only for legacy support and ease of use interaction. Not in the new API.
+        public static PronounEx SheThey { get { return new PronounEx("shethem", "She/They", "She", "Her", "Hers", "Hers", "Herself", "Was", "Is", false); } }
         public static PronounEx TheyThem { get { return new PronounEx("theythem", "They/Them", "They", "Them", "Their", "Theirs", "Themself", "Were", "Are", false); } }
         public static PronounEx VeVer { get { return new PronounEx("vever", "Ve/Ver", "Ve", "Ver", "Vis", "Vis", "Verself", "Was", "Is", false); } }
         public static PronounEx XeXem { get { return new PronounEx("xexem", "Xe/Xem", "Xe", "Xem", "Xyr", "Xyrs", "Xemself", "Was", "Is", false); } }

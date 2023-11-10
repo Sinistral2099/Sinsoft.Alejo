@@ -1,12 +1,14 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 
 namespace Sinsoft.Alejo
 {
     public class PronounsApi
     {
-        protected const string apiUrl = "https://api.pronouns.alejo.io/v1";
+        protected const string apiUrl = "https://pronouns.alejo.io/api";
 
         protected string DoApiCall(string url, int httpTimeout = 5)
         {
@@ -33,33 +35,15 @@ namespace Sinsoft.Alejo
             }
         }
 
-        public Status GetApiHealth()
-        {
-            string url = $"{apiUrl}/health";
-            string apiResult = DoApiCall(url);
-            HealthCheck healthCheck = JsonConvert.DeserializeObject<HealthCheck>(apiResult);
-            return healthCheck.Status;
-        }
-
         public PronounEx GetUserPronouns(string userName)
         {
             string url = $"{apiUrl}/users/{userName.ToLower()}";
             string apiResult = DoApiCall(url);
-            if (apiResult == "not_found") { throw new UserNotFoundException(userName); }
-            PronounUser pronounUser = JsonConvert.DeserializeObject<PronounUser>(apiResult);
+            if (apiResult == "[]" || apiResult == "fail") { throw new UserNotFoundException(userName); }
 
-            PronounEx _return;
+            JArray users = JArray.Parse(apiResult);
             
-            if (pronounUser.AltPronounId != null)
-            {
-                _return = PronounEx.GetPronounExByPronounId(pronounUser.AltPronounId);
-            }
-            else
-            {
-                _return = PronounEx.GetPronounExByPronounId(pronounUser.PronounId);
-            }
-
-            return _return;
+            return PronounEx.GetPronounExByPronounId(users[0]["pronoun_id"].ToString());
         }
     }
 }
